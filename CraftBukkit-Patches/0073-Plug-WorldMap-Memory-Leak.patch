@@ -1,11 +1,11 @@
-From f1745c81c6271f31c7074c2a16615391c716f4f3 Mon Sep 17 00:00:00 2001
+From c7e5b4b5e0e604d9d313d548bf067855b8f52159 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 8 Aug 2014 19:57:03 +1000
 Subject: [PATCH] Plug WorldMap Memory Leak
 
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 646923204..c31d3caf7 100644
+index c1a4183517..05c26558ee 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -1988,6 +1988,29 @@ public class WorldServer extends World implements GeneratorAccessSeed {

@@ -1,14 +1,14 @@
-From cc733eb113fed5dacab1351eb73c3fd88f6e1d1f Mon Sep 17 00:00:00 2001
+From 14dc5bd6a8cf1afe408730fbee2a710dfb52cf44 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Wed, 22 Jul 2015 19:04:37 +1000
 Subject: [PATCH] Clear Packet Queue on Disconnect
 
 
 diff --git a/src/main/java/net/minecraft/network/NetworkManager.java b/src/main/java/net/minecraft/network/NetworkManager.java
-index 0d2296550..05d79ded3 100644
+index 0b8998b944..caeb913ee7 100644
 --- a/src/main/java/net/minecraft/network/NetworkManager.java
 +++ b/src/main/java/net/minecraft/network/NetworkManager.java
-@@ -425,6 +425,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -443,6 +443,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
                  } else if (this.getPacketListener() != null) {
                      this.getPacketListener().onDisconnect(IChatBaseComponent.translatable("multiplayer.disconnect.generic"));
                  }
@@ -17,10 +17,10 @@ index 0d2296550..05d79ded3 100644
  
          }
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 56d8b9706..89b349090 100644
+index 75191ec46e..0cb1c71a4f 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -1821,7 +1821,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -1813,7 +1813,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
      public void send(Packet<?> packet, @Nullable PacketSendListener packetsendlistener) {
          // CraftBukkit start

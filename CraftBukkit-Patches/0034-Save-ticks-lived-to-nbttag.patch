@@ -1,14 +1,14 @@
-From 7b38e2225e3c0dff826479b8c4b2ee7b05dc0d56 Mon Sep 17 00:00:00 2001
+From 7a151ce4a37f97b592be2d32e6968619f75f9457 Mon Sep 17 00:00:00 2001
 From: DerFlash <bte@freenet.de>
 Date: Tue, 9 Jul 2013 00:11:12 +0200
 Subject: [PATCH] Save ticks lived to nbttag
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 945403674..bcd20ed56 100644
+index c4181cbaff..8ebc6d6679 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1806,6 +1806,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -1816,6 +1816,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
              if (maxAirTicks != getDefaultMaxAirSupply()) {
                  nbttagcompound.putInt("Bukkit.MaxAirSupply", getMaxAirSupply());
              }
@@ -16,7 +16,7 @@ index 945403674..bcd20ed56 100644
              // CraftBukkit end
              IChatBaseComponent ichatbasecomponent = this.getCustomName();
  
-@@ -1964,6 +1965,11 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -1974,6 +1975,11 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
              }
  
              // CraftBukkit start

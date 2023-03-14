@@ -1,15 +1,15 @@
-From b2f9d6eeb3517eb6b74cdf2e2e5e1106da6ef308 Mon Sep 17 00:00:00 2001
+From 26d817de3b744119228c159bd90412d4d96ab6b9 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
 
 
 diff --git a/pom.xml b/pom.xml
-index 6b2378c3..afe250e3 100644
+index 7cff099b..829ebece 100644
 --- a/pom.xml
 +++ b/pom.xml
-@@ -45,6 +45,13 @@
-             <version>2.10</version>
+@@ -52,6 +52,13 @@
+             <version>1.10.5</version>
              <scope>compile</scope>
          </dependency>
 +        <dependency>
@@ -22,7 +22,7 @@ index 6b2378c3..afe250e3 100644
          <dependency>
              <groupId>org.yaml</groupId>
              <artifactId>snakeyaml</artifactId>
-@@ -180,6 +187,7 @@
+@@ -187,6 +194,7 @@
                          <link>https://guava.dev/releases/31.0.1-jre/api/docs/</link>
                          <link>https://javadoc.io/doc/org.yaml/snakeyaml/1.30/</link>
                          <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/23.0.0/</link>

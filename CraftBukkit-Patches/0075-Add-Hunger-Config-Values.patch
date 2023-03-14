@@ -1,14 +1,14 @@
-From efe30e144553e148ac65965462902bf383dfbde5 Mon Sep 17 00:00:00 2001
+From f4a6c2a5cabfd8be60edf0215518ab5867091814 Mon Sep 17 00:00:00 2001
 From: lazertester <austin.techhead@gmail.com>
 Date: Sun, 17 Aug 2014 19:56:17 +1000
 Subject: [PATCH] Add Hunger Config Values
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-index cebffae13..517755ce5 100644
+index 9a57a711bd..2e8c20edb9 100644
 --- a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
 +++ b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-@@ -1382,7 +1382,7 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1381,7 +1381,7 @@ public abstract class EntityHuman extends EntityLiving {
                              }
                          }
  
@@ -17,7 +17,7 @@ index cebffae13..517755ce5 100644
                      } else {
                          this.level.playSound((EntityHuman) null, this.getX(), this.getY(), this.getZ(), SoundEffects.PLAYER_ATTACK_NODAMAGE, this.getSoundSource(), 1.0F, 1.0F);
                          if (flag4) {
-@@ -1559,9 +1559,9 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1558,9 +1558,9 @@ public abstract class EntityHuman extends EntityLiving {
          super.jumpFromGround();
          this.awardStat(StatisticList.JUMP);
          if (this.isSprinting()) {
@@ -29,7 +29,7 @@ index cebffae13..517755ce5 100644
          }
  
      }
-@@ -1634,19 +1634,19 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1629,19 +1629,19 @@ public abstract class EntityHuman extends EntityLiving {
                  i = Math.round((float) Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 100.0F);
                  if (i > 0) {
                      this.awardStat(StatisticList.SWIM_ONE_CM, i);
@@ -52,7 +52,7 @@ index cebffae13..517755ce5 100644
                  }
              } else if (this.onClimbable()) {
                  if (d1 > 0.0D) {
-@@ -1657,13 +1657,13 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1652,13 +1652,13 @@ public abstract class EntityHuman extends EntityLiving {
                  if (i > 0) {
                      if (this.isSprinting()) {
                          this.awardStat(StatisticList.SPRINT_ONE_CM, i);
@@ -70,10 +70,10 @@ index cebffae13..517755ce5 100644
                  }
              } else if (this.isFallFlying()) {
 diff --git a/src/main/java/net/minecraft/world/food/FoodMetaData.java b/src/main/java/net/minecraft/world/food/FoodMetaData.java
-index 94531cafc..0dc5a9998 100644
+index bd7584b3d6..3258925268 100644
 --- a/src/main/java/net/minecraft/world/food/FoodMetaData.java
 +++ b/src/main/java/net/minecraft/world/food/FoodMetaData.java
-@@ -97,7 +97,7 @@ public class FoodMetaData {
+@@ -96,7 +96,7 @@ public class FoodMetaData {
              if (this.tickTimer >= this.unsaturatedRegenRate) { // CraftBukkit - add regen rate manipulation
                  entityhuman.heal(1.0F, org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason.SATIATED); // CraftBukkit - added RegainReason
                  // this.a(6.0F); CraftBukkit - EntityExhaustionEvent
@@ -83,7 +83,7 @@ index 94531cafc..0dc5a9998 100644
              }
          } else if (this.foodLevel <= 0) {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index ad0a04ff9..12a75a1c7 100644
+index ad0a04ff96..12a75a1c78 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -328,4 +328,30 @@ public class SpigotWorldConfig

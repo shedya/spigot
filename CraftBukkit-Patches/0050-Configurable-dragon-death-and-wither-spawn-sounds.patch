@@ -1,14 +1,14 @@
-From 0f5039e4a9b96fe94d6d32e7478355b14abd81a5 Mon Sep 17 00:00:00 2001
+From 858ca7e5d5e9a40e70f5ee3832a57c4fe12a83c0 Mon Sep 17 00:00:00 2001
 From: drXor <mcyoungsota@gmail.com>
 Date: Sat, 29 Mar 2014 13:44:25 -0400
 Subject: [PATCH] Configurable dragon death and wither spawn sounds
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java b/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
-index c3ecfa640..09f14e1f3 100644
+index d59c275a73..78cda61b28 100644
 --- a/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
 +++ b/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
-@@ -651,7 +651,24 @@ public class EntityEnderDragon extends EntityInsentient implements IMonster {
+@@ -653,7 +653,24 @@ public class EntityEnderDragon extends EntityInsentient implements IMonster {
              }
  
              if (this.dragonDeathTime == 1 && !this.isSilent()) {
@@ -35,10 +35,10 @@ index c3ecfa640..09f14e1f3 100644
          }
  
 diff --git a/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java b/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
-index 2fb3e1aac..ca793ea84 100644
+index 6e2dd5cf42..fb6e4c6708 100644
 --- a/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
 +++ b/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
-@@ -276,6 +276,7 @@ public class EntityWither extends EntityMonster implements PowerableMob, IRanged
+@@ -277,6 +277,7 @@ public class EntityWither extends EntityMonster implements PowerableMob, IRanged
                          double deltaX = this.getX() - player.getX();
                          double deltaZ = this.getZ() - player.getZ();
                          double distanceSquared = deltaX * deltaX + deltaZ * deltaZ;
@@ -47,7 +47,7 @@ index 2fb3e1aac..ca793ea84 100644
                              double deltaLength = Math.sqrt(distanceSquared);
                              double relativeX = player.getX() + (deltaX / deltaLength) * viewDistance;
 diff --git a/src/main/java/net/minecraft/world/item/ItemEnderEye.java b/src/main/java/net/minecraft/world/item/ItemEnderEye.java
-index e3c6fda40..f97c94517 100644
+index e3c6fda403..f97c945174 100644
 --- a/src/main/java/net/minecraft/world/item/ItemEnderEye.java
 +++ b/src/main/java/net/minecraft/world/item/ItemEnderEye.java
 @@ -60,7 +60,25 @@ public class ItemEnderEye extends Item {
@@ -78,7 +78,7 @@ index e3c6fda40..f97c94517 100644
  
                  return EnumInteractionResult.CONSUME;
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 89acf67f4..33d74abad 100644
+index 89acf67f49..33d74abad1 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -274,4 +274,22 @@ public class SpigotWorldConfig

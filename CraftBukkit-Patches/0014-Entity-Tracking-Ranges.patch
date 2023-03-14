@@ -1,4 +1,4 @@
-From efda7c6011b69e3c838f0a04addc34a3eb066633 Mon Sep 17 00:00:00 2001
+From 19180bc43c2e3e54093418e8cc08ba18a34e3d62 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Feb 2013 11:58:47 -0500
 Subject: [PATCH] Entity Tracking Ranges
@@ -12,10 +12,10 @@ This has multiple benefits:
 4) Less client lag - Not trying to render distant item frames and paintings and entities will reduce entity count on the client, which is major for shop/town worlds which may use tons of item frames.
 
 diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-index 5b60c6e1e..1fb1a2b4a 100644
+index b05efe366c..299724c497 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-@@ -1304,6 +1304,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1307,6 +1307,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
          if (!(entity instanceof EntityComplexPart)) {
              EntityTypes<?> entitytypes = entity.getType();
              int i = entitytypes.clientTrackingRange() * 16;
@@ -24,7 +24,7 @@ index 5b60c6e1e..1fb1a2b4a 100644
              if (i != 0) {
                  int j = entitytypes.updateInterval();
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 936279b5f..434a7632a 100644
+index 936279b5fb..434a7632aa 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -211,4 +211,19 @@ public class SpigotWorldConfig
@@ -49,7 +49,7 @@ index 936279b5f..434a7632a 100644
  }
 diff --git a/src/main/java/org/spigotmc/TrackingRange.java b/src/main/java/org/spigotmc/TrackingRange.java
 new file mode 100644
-index 000000000..f1b220acd
+index 0000000000..f1b220acd0
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/TrackingRange.java
 @@ -0,0 +1,55 @@

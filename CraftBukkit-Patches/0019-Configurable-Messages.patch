@@ -1,14 +1,14 @@
-From 6a1611987de669c73170e433aa55611e3748243a Mon Sep 17 00:00:00 2001
+From 850838ed969efeadacc94ff1b297da8964c1b453 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
 
 
 diff --git a/src/main/java/net/minecraft/server/network/HandshakeListener.java b/src/main/java/net/minecraft/server/network/HandshakeListener.java
-index ccdb4e80b..8da1aaa0a 100644
+index 753de5b0a2..3a9ac2a831 100644
 --- a/src/main/java/net/minecraft/server/network/HandshakeListener.java
 +++ b/src/main/java/net/minecraft/server/network/HandshakeListener.java
-@@ -74,9 +74,9 @@ public class HandshakeListener implements PacketHandshakingInListener {
+@@ -75,9 +75,9 @@ public class HandshakeListener implements PacketHandshakingInListener {
                      IChatMutableComponent ichatmutablecomponent;
  
                      if (packethandshakinginsetprotocol.getProtocolVersion() < 754) {
@@ -21,10 +21,10 @@ index ccdb4e80b..8da1aaa0a 100644
  
                      this.connection.send(new PacketLoginOutDisconnect(ichatmutablecomponent));
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index ad9a10827..f93528ccb 100644
+index 0d315ec98e..28259ca637 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -595,7 +595,7 @@ public abstract class PlayerList {
+@@ -602,7 +602,7 @@ public abstract class PlayerList {
              event.disallow(PlayerLoginEvent.Result.KICK_BANNED, CraftChatMessage.fromComponent(ichatmutablecomponent));
          } else if (!this.isWhiteListed(gameprofile)) {
              ichatmutablecomponent = IChatBaseComponent.translatable("multiplayer.disconnect.not_whitelisted");
@@ -33,7 +33,7 @@ index ad9a10827..f93528ccb 100644
          } else if (getIpBans().isBanned(socketaddress) && !getIpBans().get(socketaddress).hasExpired()) {
              IpBanEntry ipbanentry = this.ipBans.get(socketaddress);
  
-@@ -609,7 +609,7 @@ public abstract class PlayerList {
+@@ -616,7 +616,7 @@ public abstract class PlayerList {
          } else {
              // return this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile) ? IChatBaseComponent.translatable("multiplayer.disconnect.server_full") : null;
              if (this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile)) {
@@ -43,10 +43,10 @@ index ad9a10827..f93528ccb 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index fb565c282..5330cdd81 100644
+index 80f051d15a..10a61f2a70 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -828,11 +828,11 @@ public final class CraftServer implements Server {
+@@ -822,11 +822,11 @@ public final class CraftServer implements Server {
              return true;
          }
  
@@ -63,7 +63,7 @@ index fb565c282..5330cdd81 100644
          return false;
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index fc352ecf1..8ad8b2589 100644
+index fc352ecf10..8ad8b25894 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -12,6 +12,7 @@ import java.util.Map;

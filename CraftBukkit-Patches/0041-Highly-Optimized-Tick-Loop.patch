@@ -1,14 +1,14 @@
-From 77df6c1d50117d2fbe8c9952f9842641db6d3c62 Mon Sep 17 00:00:00 2001
+From 972af63ee3017d58e94b69e54553d11bc647c878 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 26 Jan 2017 21:50:51 +0000
 Subject: [PATCH] Highly Optimized Tick Loop
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 8df3c9fcc..0fa198962 100644
+index 35bdb154f9..afcf0f78e2 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -288,6 +288,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -291,6 +291,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
      public CommandDispatcher vanillaCommandDispatcher;
      private boolean forceTicks;
      // CraftBukkit end
@@ -21,7 +21,7 @@ index 8df3c9fcc..0fa198962 100644
  
      public static <S extends MinecraftServer> S spin(Function<Thread, S> function) {
          AtomicReference<S> atomicreference = new AtomicReference();
-@@ -949,6 +955,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -951,6 +957,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
  
      }
  
@@ -36,8 +36,8 @@ index 8df3c9fcc..0fa198962 100644
          try {
              if (!this.initServer()) {
 @@ -961,8 +974,11 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
-             this.status.setEnforcesSecureChat(this.enforceSecureProfile());
-             this.updateStatusIcon(this.status);
+             this.statusIcon = (ServerPing.a) this.loadStatusIcon().orElse(null); // CraftBukkit - decompile error
+             this.status = this.buildServerStatus();
  
 +            // Spigot start
 +            Arrays.fill( recentTps, 20 );
@@ -66,7 +66,7 @@ index 8df3c9fcc..0fa198962 100644
                      this.debugCommandProfilerDelayStart = false;
                      this.debugCommandProfiler = new MinecraftServer.TimeProfiler(SystemUtils.getNanos(), this.tickCount);
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 0aab647ab..4987040ff 100644
+index 0aab647abb..4987040ff2 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -266,4 +266,9 @@ public class SpigotConfig
@@ -81,7 +81,7 @@ index 0aab647ab..4987040ff 100644
  }
 diff --git a/src/main/java/org/spigotmc/TicksPerSecondCommand.java b/src/main/java/org/spigotmc/TicksPerSecondCommand.java
 new file mode 100644
-index 000000000..f5b6dec1c
+index 0000000000..f5b6dec1cb
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/TicksPerSecondCommand.java
 @@ -0,0 +1,45 @@

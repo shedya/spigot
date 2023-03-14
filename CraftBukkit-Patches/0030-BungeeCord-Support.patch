@@ -1,4 +1,4 @@
-From 38df3a95168f30717c2c462134c7ed8e7ba53a9a Mon Sep 17 00:00:00 2001
+From 4e39bf4c41fe6bdc9d92c543a12fac37206f9642 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -6,10 +6,10 @@ Subject: [PATCH] BungeeCord Support
 Provides support for IP forwarding via BungeeCord.
 
 diff --git a/src/main/java/net/minecraft/network/NetworkManager.java b/src/main/java/net/minecraft/network/NetworkManager.java
-index 82c2a9de9..564bf6df3 100644
+index 846150da76..9e8b1e9492 100644
 --- a/src/main/java/net/minecraft/network/NetworkManager.java
 +++ b/src/main/java/net/minecraft/network/NetworkManager.java
-@@ -74,6 +74,10 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -76,6 +76,10 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
      private final Queue<NetworkManager.QueuedPacket> queue = Queues.newConcurrentLinkedQueue();
      public Channel channel;
      public SocketAddress address;
@@ -20,20 +20,8 @@ index 82c2a9de9..564bf6df3 100644
      private PacketListener packetListener;
      private IChatBaseComponent disconnectedReason;
      private boolean encrypted;
-@@ -437,4 +441,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
-             this.listener = packetsendlistener;
-         }
-     }
-+
-+    // Spigot Start
-+    public SocketAddress getRawAddress()
-+    {
-+        return this.channel.remoteAddress();
-+    }
-+    // Spigot End
- }
 diff --git a/src/main/java/net/minecraft/network/protocol/handshake/PacketHandshakingInSetProtocol.java b/src/main/java/net/minecraft/network/protocol/handshake/PacketHandshakingInSetProtocol.java
-index e992a972d..786314a9b 100644
+index e992a972d5..786314a9b7 100644
 --- a/src/main/java/net/minecraft/network/protocol/handshake/PacketHandshakingInSetProtocol.java
 +++ b/src/main/java/net/minecraft/network/protocol/handshake/PacketHandshakingInSetProtocol.java
 @@ -23,7 +23,7 @@ public class PacketHandshakingInSetProtocol implements Packet<PacketHandshakingI
@@ -46,10 +34,10 @@ index e992a972d..786314a9b 100644
          this.intention = EnumProtocol.getById(packetdataserializer.readVarInt());
      }
 diff --git a/src/main/java/net/minecraft/server/network/HandshakeListener.java b/src/main/java/net/minecraft/server/network/HandshakeListener.java
-index 8da1aaa0a..8e0033e7f 100644
+index 3a9ac2a831..8bbbf7d770 100644
 --- a/src/main/java/net/minecraft/server/network/HandshakeListener.java
 +++ b/src/main/java/net/minecraft/server/network/HandshakeListener.java
-@@ -17,6 +17,11 @@ import java.util.HashMap;
+@@ -18,6 +18,11 @@ import java.util.HashMap;
  
  public class HandshakeListener implements PacketHandshakingInListener {
  
@@ -61,7 +49,7 @@ index 8da1aaa0a..8e0033e7f 100644
      // CraftBukkit start - add fields
      private static final HashMap<InetAddress, Long> throttleTracker = new HashMap<InetAddress, Long>();
      private static int throttleCounter = 0;
-@@ -83,6 +88,31 @@ public class HandshakeListener implements PacketHandshakingInListener {
+@@ -84,6 +89,31 @@ public class HandshakeListener implements PacketHandshakingInListener {
                      this.connection.disconnect(ichatmutablecomponent);
                  } else {
                      this.connection.setListener(new LoginListener(this.server, this.connection));
@@ -94,7 +82,7 @@ index 8da1aaa0a..8e0033e7f 100644
                  break;
              case STATUS:
 diff --git a/src/main/java/net/minecraft/server/network/LoginListener.java b/src/main/java/net/minecraft/server/network/LoginListener.java
-index d5b2a2ac1..b1b3bc6a4 100644
+index 40f03ce23e..ac36c73e11 100644
 --- a/src/main/java/net/minecraft/server/network/LoginListener.java
 +++ b/src/main/java/net/minecraft/server/network/LoginListener.java
 @@ -115,7 +115,25 @@ public class LoginListener implements PacketLoginInListener, TickablePacketListe
@@ -125,10 +113,10 @@ index d5b2a2ac1..b1b3bc6a4 100644
  
      public void handleAcceptedLogin() {
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index dd093112a..a0b82e871 100644
+index 8e256db350..36a099d138 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -2052,10 +2052,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2046,10 +2046,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                          String message = String.format(queueEvent.getFormat(), queueEvent.getPlayer().getDisplayName(), queueEvent.getMessage());
                          if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
@@ -141,7 +129,7 @@ index dd093112a..a0b82e871 100644
                                  PlayerConnection.this.server.getPlayerList().broadcastChatMessage(original, PlayerConnection.this.player, ChatMessageType.bind(ChatMessageType.RAW, (Entity) PlayerConnection.this.player));
                                  return null;
                              }
-@@ -2091,10 +2091,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2085,10 +2085,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                  s = String.format(event.getFormat(), event.getPlayer().getDisplayName(), event.getMessage());
                  if (((LazyPlayerSet) event.getRecipients()).isLazy()) {
@@ -154,24 +142,38 @@ index dd093112a..a0b82e871 100644
                          PlayerConnection.this.server.getPlayerList().broadcastChatMessage(original, PlayerConnection.this.player, ChatMessageType.bind(ChatMessageType.RAW, (Entity) PlayerConnection.this.player));
                          return;
                      }
+@@ -2342,6 +2342,13 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+         return this.connection.getRemoteAddress();
+     }
+ 
++    // Spigot Start
++    public SocketAddress getRawAddress()
++    {
++        return this.connection.channel.remoteAddress();
++    }
++    // Spigot End
++
+     @Override
+     public void handleInteract(PacketPlayInUseEntity packetplayinuseentity) {
+         PlayerConnectionUtils.ensureRunningOnSameThread(packetplayinuseentity, this, this.player.getLevel());
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 7641155a6..6088abdf7 100644
+index 381057471e..8570685135 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -581,7 +581,7 @@ public abstract class PlayerList {
+@@ -588,7 +588,7 @@ public abstract class PlayerList {
  
          EntityPlayer entity = new EntityPlayer(this.server, this.server.getLevel(World.OVERWORLD), gameprofile);
          Player player = entity.getBukkitEntity();
 -        PlayerLoginEvent event = new PlayerLoginEvent(player, loginlistener.connection.hostname, ((java.net.InetSocketAddress) socketaddress).getAddress());
-+        PlayerLoginEvent event = new PlayerLoginEvent(player, loginlistener.connection.hostname, ((java.net.InetSocketAddress) socketaddress).getAddress(), ((java.net.InetSocketAddress) loginlistener.connection.getRawAddress()).getAddress());
++        PlayerLoginEvent event = new PlayerLoginEvent(player, loginlistener.connection.hostname, ((java.net.InetSocketAddress) socketaddress).getAddress(), ((java.net.InetSocketAddress) loginlistener.connection.channel.remoteAddress()).getAddress());
  
          if (getBans().isBanned(gameprofile) && !getBans().get(gameprofile).hasExpired()) {
              GameProfileBanEntry gameprofilebanentry = (GameProfileBanEntry) this.bans.get(gameprofile);
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 069f2ca99..2d16e81aa 100644
+index ce19419d49..ce0310c650 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -727,7 +727,13 @@ public final class CraftServer implements Server {
+@@ -721,7 +721,13 @@ public final class CraftServer implements Server {
  
      @Override
      public long getConnectionThrottle() {
@@ -187,7 +189,7 @@ index 069f2ca99..2d16e81aa 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index a8389a422..b31cc26f4 100644
+index f89d363803..188dbd7ee8 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -2055,6 +2055,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
@@ -197,14 +199,14 @@ index a8389a422..b31cc26f4 100644
 +        @Override
 +        public InetSocketAddress getRawAddress()
 +        {
-+            return (InetSocketAddress) getHandle().connection.connection.getRawAddress();
++            return (InetSocketAddress) getHandle().connection.getRawAddress();
 +        }
 +
          @Override
          public boolean getCollidesWithEntities() {
              return CraftPlayer.this.isCollidable();
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 130016282..3bb51f452 100644
+index 130016282a..3bb51f4528 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -214,4 +214,14 @@ public class SpigotConfig

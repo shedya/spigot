@@ -1,4 +1,4 @@
-From 4366e19b580218bffb50a7ea8acf21059e200e2b Mon Sep 17 00:00:00 2001
+From 58ca55291082eba094f7fa95a07bf5e95560b645 Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Tue, 9 Jul 2019 02:18:54 -0700
 Subject: [PATCH] Remove DataWatcher Locking
@@ -17,7 +17,7 @@ This patch also changes the entries map to be fastutil
 int2objectopenhashmap for performance.
 
 diff --git a/src/main/java/net/minecraft/network/syncher/DataWatcher.java b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
-index 80fb97fe4..d9252e828 100644
+index 92b6a3fa88..e3b8a05410 100644
 --- a/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 +++ b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 @@ -36,7 +36,7 @@ public class DataWatcher {
@@ -66,7 +66,7 @@ index 80fb97fe4..d9252e828 100644
      }
  
      public <T> T get(DataWatcherObject<T> datawatcherobject) {
-@@ -159,7 +166,7 @@ public class DataWatcher {
+@@ -163,7 +170,7 @@ public class DataWatcher {
          List<DataWatcher.b<?>> list = null;
  
          if (this.isDirty) {
@@ -75,7 +75,7 @@ index 80fb97fe4..d9252e828 100644
              ObjectIterator objectiterator = this.itemsById.values().iterator();
  
              while (objectiterator.hasNext()) {
-@@ -175,7 +182,7 @@ public class DataWatcher {
+@@ -179,7 +186,7 @@ public class DataWatcher {
                  }
              }
  
@@ -84,7 +84,7 @@ index 80fb97fe4..d9252e828 100644
          }
  
          this.isDirty = false;
-@@ -186,7 +193,7 @@ public class DataWatcher {
+@@ -190,7 +197,7 @@ public class DataWatcher {
      public List<DataWatcher.b<?>> getNonDefaultValues() {
          List<DataWatcher.b<?>> list = null;
  
@@ -93,7 +93,7 @@ index 80fb97fe4..d9252e828 100644
          ObjectIterator objectiterator = this.itemsById.values().iterator();
  
          while (objectiterator.hasNext()) {
-@@ -201,12 +208,12 @@ public class DataWatcher {
+@@ -205,12 +212,12 @@ public class DataWatcher {
              }
          }
  
@@ -108,7 +108,7 @@ index 80fb97fe4..d9252e828 100644
  
          try {
              Iterator iterator = list.iterator();
-@@ -221,7 +228,7 @@ public class DataWatcher {
+@@ -225,7 +232,7 @@ public class DataWatcher {
                  }
              }
          } finally {
@@ -116,12 +116,12 @@ index 80fb97fe4..d9252e828 100644
 +            // this.lock.writeLock().unlock(); // Spigot - not required
          }
  
-     }
+         this.entity.onSyncedDataUpdated(list);
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index bcd20ed56..b37edf010 100644
+index 8ebc6d6679..7ebe659e88 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -361,6 +361,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -363,6 +363,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.entityData.define(Entity.DATA_POSE, EntityPose.STANDING);
          this.entityData.define(Entity.DATA_TICKS_FROZEN, 0);
          this.defineSynchedData();

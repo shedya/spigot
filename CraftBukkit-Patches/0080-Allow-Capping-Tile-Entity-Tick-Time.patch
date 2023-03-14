@@ -1,4 +1,4 @@
-From cc01892d5cf63aea223325240b5b33167628975f Mon Sep 17 00:00:00 2001
+From c7b6f872a0b08170c13acdf2e046146c5d00c22b Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 20 Feb 2015 21:39:31 +1100
 Subject: [PATCH] Allow Capping (Tile)Entity Tick Time.
@@ -10,10 +10,10 @@ For tiles there is very little tradeoff for this option, as tile ticks are based
 This feature was commisioned by Chunkr.
 
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index f6349e405..acc4c7a3e 100644
+index c90cbf9e90..7f2bb869f7 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -155,6 +155,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -159,6 +159,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
  
      public final SpigotTimings.WorldTimingsHandler timings; // Spigot
      public static BlockPosition lastPhysicsProblem; // Spigot
@@ -23,7 +23,7 @@ index f6349e405..acc4c7a3e 100644
  
      public CraftWorld getWorld() {
          return this.world;
-@@ -246,6 +249,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -252,6 +255,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          });
          // CraftBukkit end
          timings = new SpigotTimings.WorldTimingsHandler(this); // Spigot - code below can generate new world and access timings
@@ -32,7 +32,7 @@ index f6349e405..acc4c7a3e 100644
      }
  
      @Override
-@@ -639,20 +644,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -645,20 +650,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          timings.tileEntityPending.stopTiming(); // Spigot
  
          timings.tileEntityTick.startTiming(); // Spigot
@@ -68,7 +68,7 @@ index f6349e405..acc4c7a3e 100644
                  tickingblockentity.tick();
              }
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 314a0f220..fafddbef3 100644
+index 314a0f220a..fafddbef3d 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -371,4 +371,13 @@ public class SpigotWorldConfig
@@ -87,7 +87,7 @@ index 314a0f220..fafddbef3 100644
  }
 diff --git a/src/main/java/org/spigotmc/TickLimiter.java b/src/main/java/org/spigotmc/TickLimiter.java
 new file mode 100644
-index 000000000..23a39382b
+index 0000000000..23a39382be
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/TickLimiter.java
 @@ -0,0 +1,20 @@

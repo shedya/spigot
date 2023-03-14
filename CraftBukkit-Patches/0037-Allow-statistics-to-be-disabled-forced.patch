@@ -1,11 +1,11 @@
-From 8ad348ddfea132428f44eef12803284fd37f70f6 Mon Sep 17 00:00:00 2001
+From 30f9cc3fee932d7d24d4f86b970c81c5241426c1 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thethinkofdeath@gmail.com>
 Date: Tue, 7 Jan 2014 15:56:26 +0000
 Subject: [PATCH] Allow statistics to be disabled/forced
 
 
 diff --git a/src/main/java/net/minecraft/stats/ServerStatisticManager.java b/src/main/java/net/minecraft/stats/ServerStatisticManager.java
-index 06660d415..ce0a5f6c8 100644
+index 3be61a86cf..a7ecfad861 100644
 --- a/src/main/java/net/minecraft/stats/ServerStatisticManager.java
 +++ b/src/main/java/net/minecraft/stats/ServerStatisticManager.java
 @@ -48,6 +48,13 @@ public class ServerStatisticManager extends StatisticManager {
@@ -39,7 +39,7 @@ index 06660d415..ce0a5f6c8 100644
          this.dirty.add(statistic);
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index c5989e8e9..0aab647ab 100644
+index c5989e8e9b..0aab647abb 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -10,10 +10,13 @@ import java.util.HashMap;

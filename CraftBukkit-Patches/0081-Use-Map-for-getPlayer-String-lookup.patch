@@ -1,14 +1,14 @@
-From 91976b51b2a8acc2f0156afc7f44bd9a9a256253 Mon Sep 17 00:00:00 2001
+From 42b819f44326ff25f9d818e9705bcf75c37ba715 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 13 Jul 2015 19:05:15 +1000
 Subject: [PATCH] Use Map for getPlayer(String) lookup.
 
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index f670de3f2..520765157 100644
+index 8fbef6a7b9..68baffa330 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -160,6 +160,7 @@ public abstract class PlayerList {
+@@ -161,6 +161,7 @@ public abstract class PlayerList {
  
      // CraftBukkit start
      private CraftServer cserver;
@@ -16,15 +16,15 @@ index f670de3f2..520765157 100644
  
      public PlayerList(MinecraftServer minecraftserver, LayeredRegistryAccess<RegistryLayer> layeredregistryaccess, WorldNBTStorage worldnbtstorage, int i) {
          this.cserver = minecraftserver.server = new CraftServer((DedicatedServer) minecraftserver, this);
-@@ -279,6 +280,7 @@ public abstract class PlayerList {
-         entityplayer.sendServerStatus(this.server.getStatus());
+@@ -285,6 +286,7 @@ public abstract class PlayerList {
+ 
          entityplayer.connection.send(ClientboundPlayerInfoUpdatePacket.createPlayerInitializing(this.players));
          this.players.add(entityplayer);
 +        this.playersByName.put(entityplayer.getScoreboardName().toLowerCase(java.util.Locale.ROOT), entityplayer); // Spigot
          this.playersByUUID.put(entityplayer.getUUID(), entityplayer);
          // this.broadcastAll(ClientboundPlayerInfoUpdatePacket.createPlayerInitializing(List.of(entityplayer))); // CraftBukkit - replaced with loop below
  
-@@ -531,6 +533,7 @@ public abstract class PlayerList {
+@@ -538,6 +540,7 @@ public abstract class PlayerList {
          worldserver.removePlayerImmediately(entityplayer, Entity.RemovalReason.UNLOADED_WITH_PLAYER);
          entityplayer.getAdvancements().stopListening();
          this.players.remove(entityplayer);
@@ -32,7 +32,7 @@ index f670de3f2..520765157 100644
          this.server.getCustomBossEvents().onPlayerDisconnect(entityplayer);
          UUID uuid = entityplayer.getUUID();
          EntityPlayer entityplayer1 = (EntityPlayer) this.playersByUUID.get(uuid);
-@@ -675,6 +678,7 @@ public abstract class PlayerList {
+@@ -682,6 +685,7 @@ public abstract class PlayerList {
      public EntityPlayer respawn(EntityPlayer entityplayer, WorldServer worldserver, boolean flag, Location location, boolean avoidSuffocation) {
          entityplayer.stopRiding(); // CraftBukkit
          this.players.remove(entityplayer);
@@ -40,7 +40,7 @@ index f670de3f2..520765157 100644
          entityplayer.getLevel().removePlayerImmediately(entityplayer, Entity.RemovalReason.DISCARDED);
          BlockPosition blockposition = entityplayer.getRespawnPosition();
          float f = entityplayer.getRespawnAngle();
-@@ -796,6 +800,7 @@ public abstract class PlayerList {
+@@ -803,6 +807,7 @@ public abstract class PlayerList {
          if (!entityplayer.connection.isDisconnected()) {
              worldserver1.addRespawnedPlayer(entityplayer1);
              this.players.add(entityplayer1);
@@ -48,7 +48,7 @@ index f670de3f2..520765157 100644
              this.playersByUUID.put(entityplayer1.getUUID(), entityplayer1);
          }
          // entityplayer1.initInventoryMenu();
-@@ -999,19 +1004,7 @@ public abstract class PlayerList {
+@@ -1006,19 +1011,7 @@ public abstract class PlayerList {
  
      @Nullable
      public EntityPlayer getPlayerByName(String s) {
