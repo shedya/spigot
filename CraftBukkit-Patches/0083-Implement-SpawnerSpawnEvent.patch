@@ -1,11 +1,11 @@
-From c121dba11403590150bb664416c87c42c5f9b047 Mon Sep 17 00:00:00 2001
+From 9dd170129ce11ab83ee7179b485f96e44c76f483 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 3 Mar 2016 19:45:46 +1100
 Subject: [PATCH] Implement SpawnerSpawnEvent.
 
 
 diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-index 50df2abbf6..470b3ab71e 100644
+index 50df2abbf..470b3ab71 100644
 --- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 +++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 @@ -158,6 +158,18 @@ public abstract class MobSpawnerAbstract {
@@ -28,7 +28,7 @@ index 50df2abbf6..470b3ab71e 100644
                          if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
                              this.delay(worldserver, blockposition);
 diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-index 0442d69fc8..04dcdff0b0 100644
+index 7286f5bc2..fc1e71979 100644
 --- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 @@ -235,6 +235,8 @@ import org.bukkit.inventory.InventoryView;
@@ -40,7 +40,7 @@ index 0442d69fc8..04dcdff0b0 100644
  public class CraftEventFactory {
      public static org.bukkit.block.Block blockDamage; // For use in EntityDamageByBlockEvent
      public static Entity entityDamage; // For use in EntityDamageByEntityEvent
-@@ -1505,6 +1507,21 @@ public class CraftEventFactory {
+@@ -1511,6 +1513,21 @@ public class CraftEventFactory {
          return event;
      }
  
