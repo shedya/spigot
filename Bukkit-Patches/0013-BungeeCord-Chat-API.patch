@@ -1,11 +1,11 @@
-From 26d817de3b744119228c159bd90412d4d96ab6b9 Mon Sep 17 00:00:00 2001
+From 67e63ec38eb6309b96e5829fb65feda324b6e913 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
 
 
 diff --git a/pom.xml b/pom.xml
-index 7cff099b..829ebece 100644
+index 648d6f78..95228f32 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -52,6 +52,13 @@
@@ -22,16 +22,16 @@ index 7cff099b..829ebece 100644
          <dependency>
              <groupId>org.yaml</groupId>
              <artifactId>snakeyaml</artifactId>
-@@ -187,6 +194,7 @@
-                         <link>https://guava.dev/releases/31.0.1-jre/api/docs/</link>
-                         <link>https://javadoc.io/doc/org.yaml/snakeyaml/1.30/</link>
+@@ -189,6 +196,7 @@
+                         <link>https://guava.dev/releases/31.1-jre/api/docs/</link>
+                         <link>https://javadoc.io/doc/org.yaml/snakeyaml/1.33/</link>
                          <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/23.0.0/</link>
 +                        <link>https://javadoc.io/doc/net.md-5/bungeecord-chat/1.16-R0.4/</link>
                      </links>
                  </configuration>
              </plugin>
 diff --git a/src/main/java/org/bukkit/ChatColor.java b/src/main/java/org/bukkit/ChatColor.java
-index 623bba2e..24ade174 100644
+index 6149c77d..e3f185dc 100644
 --- a/src/main/java/org/bukkit/ChatColor.java
 +++ b/src/main/java/org/bukkit/ChatColor.java
 @@ -15,91 +15,223 @@ public enum ChatColor {
@@ -370,10 +370,10 @@ index 4b6b9540..284be63a 100644
  
      @NotNull
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 7615502d..c60e1fc1 100644
+index e2bbf040..f2aeb6db 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1720,6 +1720,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1763,6 +1763,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          public java.util.Set<Player> getHiddenPlayers() {
              throw new UnsupportedOperationException("Not supported yet.");
          }
