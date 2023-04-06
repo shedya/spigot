@@ -1,14 +1,14 @@
-From e3651c1afb7a87e9e8104d64937aa89e49d80de5 Mon Sep 17 00:00:00 2001
+From 86453995ab12d5e5cacef2875b3980178361286f Mon Sep 17 00:00:00 2001
 From: drXor <mcyoung@mit.edu>
 Date: Wed, 23 Jul 2014 15:50:36 -0400
 Subject: [PATCH] Undeprecate Player#updateInventory()V
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6135a340..e2bbf040 100644
+index 9e886940..cf417783 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -714,10 +714,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -715,10 +715,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      /**
       * Forces an update of the player's entire inventory.
       *
