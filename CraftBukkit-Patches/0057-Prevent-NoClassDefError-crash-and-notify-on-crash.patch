@@ -1,11 +1,11 @@
-From e77f4725bebe579021e5e101f82bd125397760c9 Mon Sep 17 00:00:00 2001
+From 0d676033e5402f68d1bd5e1a62dc4808e07658bc Mon Sep 17 00:00:00 2001
 From: David <dmck2b@gmail.com>
 Date: Mon, 21 Apr 2014 12:43:08 +0100
 Subject: [PATCH] Prevent NoClassDefError crash and notify on crash
 
 
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index 0493e322d6..985e69e960 100644
+index 0493e322d..985e69e96 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
 @@ -158,6 +158,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
@@ -32,7 +32,7 @@ index 0493e322d6..985e69e960 100644
                  // CraftBukkit end
  
 diff --git a/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java b/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
-index b86294e756..0383c21dea 100644
+index b86294e75..0383c21de 100644
 --- a/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
 +++ b/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
 @@ -65,6 +65,10 @@ public interface NeighborUpdater {
@@ -47,7 +47,7 @@ index b86294e756..0383c21dea 100644
              CrashReport crashreport = CrashReport.forThrowable(throwable, "Exception while updating neighbours");
              CrashReportSystemDetails crashreportsystemdetails = crashreport.addCategory("Block being updated");
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
-index 4734d4ae83..b4eeeb0d00 100644
+index 4734d4ae8..b4eeeb0d0 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java
 +++ b/src/main/java/org/spigotmc/WatchdogThread.java
 @@ -74,6 +74,13 @@ public class WatchdogThread extends Thread
@@ -65,5 +65,5 @@ index 4734d4ae83..b4eeeb0d00 100644
                  log.log( Level.SEVERE, "Server thread dump (Look for plugins here before reporting to Spigot!):" );
                  dumpThread( ManagementFactory.getThreadMXBean().getThreadInfo( MinecraftServer.getServer().serverThread.getId(), Integer.MAX_VALUE ), log );
 -- 
-2.34.1
+2.40.0
 

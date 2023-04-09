@@ -1,11 +1,11 @@
-From 858ca7e5d5e9a40e70f5ee3832a57c4fe12a83c0 Mon Sep 17 00:00:00 2001
+From 9d77012e1e26ad85ea15b6d474c94d089de91100 Mon Sep 17 00:00:00 2001
 From: drXor <mcyoungsota@gmail.com>
 Date: Sat, 29 Mar 2014 13:44:25 -0400
 Subject: [PATCH] Configurable dragon death and wither spawn sounds
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java b/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
-index d59c275a73..78cda61b28 100644
+index d59c275a7..78cda61b2 100644
 --- a/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
 +++ b/src/main/java/net/minecraft/world/entity/boss/enderdragon/EntityEnderDragon.java
 @@ -653,7 +653,24 @@ public class EntityEnderDragon extends EntityInsentient implements IMonster {
@@ -35,7 +35,7 @@ index d59c275a73..78cda61b28 100644
          }
  
 diff --git a/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java b/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
-index 6e2dd5cf42..fb6e4c6708 100644
+index 6e2dd5cf4..fb6e4c670 100644
 --- a/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
 +++ b/src/main/java/net/minecraft/world/entity/boss/wither/EntityWither.java
 @@ -277,6 +277,7 @@ public class EntityWither extends EntityMonster implements PowerableMob, IRanged
@@ -47,7 +47,7 @@ index 6e2dd5cf42..fb6e4c6708 100644
                              double deltaLength = Math.sqrt(distanceSquared);
                              double relativeX = player.getX() + (deltaX / deltaLength) * viewDistance;
 diff --git a/src/main/java/net/minecraft/world/item/ItemEnderEye.java b/src/main/java/net/minecraft/world/item/ItemEnderEye.java
-index e3c6fda403..f97c945174 100644
+index e3c6fda40..f97c94517 100644
 --- a/src/main/java/net/minecraft/world/item/ItemEnderEye.java
 +++ b/src/main/java/net/minecraft/world/item/ItemEnderEye.java
 @@ -60,7 +60,25 @@ public class ItemEnderEye extends Item {
@@ -78,7 +78,7 @@ index e3c6fda403..f97c945174 100644
  
                  return EnumInteractionResult.CONSUME;
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 89acf67f49..33d74abad1 100644
+index 89acf67f4..33d74abad 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -274,4 +274,22 @@ public class SpigotWorldConfig
@@ -105,5 +105,5 @@ index 89acf67f49..33d74abad1 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 

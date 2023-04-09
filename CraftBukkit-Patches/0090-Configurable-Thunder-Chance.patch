@@ -1,11 +1,11 @@
-From a02c255c821ccb3a7199c93eb24d957d0b34ce85 Mon Sep 17 00:00:00 2001
+From 3764fe7931639eee07ef052233b4abcd45ec82c1 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 24 Oct 2021 20:29:25 +1100
 Subject: [PATCH] Configurable Thunder Chance
 
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 05c26558ee..fd4e1503e8 100644
+index 05c26558e..fd4e1503e 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -493,7 +493,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
@@ -18,7 +18,7 @@ index 05c26558ee..fd4e1503e8 100644
              if (this.isRainingAt(blockposition)) {
                  DifficultyDamageScaler difficultydamagescaler = this.getCurrentDifficultyAt(blockposition);
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index fafddbef3d..57be56742d 100644
+index fafddbef3..57be56742 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -380,4 +380,10 @@ public class SpigotWorldConfig
@@ -33,5 +33,5 @@ index fafddbef3d..57be56742d 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 

@@ -1,4 +1,4 @@
-From 53e15550df8c930658784c2c9805c133f2ea2791 Mon Sep 17 00:00:00 2001
+From 5cb6ba50fb7f9f60d05bac6e7d8cdc7caa3f1350 Mon Sep 17 00:00:00 2001
 From: lazertester <austin.techhead@gmail.com>
 Date: Sun, 17 Aug 2014 19:56:17 +1000
 Subject: [PATCH] Add Hunger Config Values
@@ -118,5 +118,5 @@ index ad0a04ff9..12a75a1c7 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 

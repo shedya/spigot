@@ -1,11 +1,11 @@
-From 5896e11bf2666a23b14e84bbc82e86bbf924944b Mon Sep 17 00:00:00 2001
+From b62a505d147a44212cfe01b8851fcac493178d3f Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 2 Feb 2014 16:55:46 +0000
 Subject: [PATCH] Add Option to Nerf Mobs from Spawners
 
 
 diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-index f1f8a5ba02..50df2abbf6 100644
+index f1f8a5ba0..50df2abbf 100644
 --- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 +++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 @@ -151,6 +151,12 @@ public abstract class MobSpawnerAbstract {
@@ -22,7 +22,7 @@ index f1f8a5ba02..50df2abbf6 100644
  
                          if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 5ec5540722..b7d04ac15c 100644
+index 5ec554072..b7d04ac15 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
 @@ -260,4 +260,11 @@ public class SpigotWorldConfig
@@ -38,5 +38,5 @@ index 5ec5540722..b7d04ac15c 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 

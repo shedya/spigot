@@ -1,14 +1,14 @@
-From a0bb271d1040497b9cda3cca75fd39ebc652117f Mon Sep 17 00:00:00 2001
+From 4e8758c4fccd521c7868bfa9a969c0014fc98af8 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 8 Feb 2014 08:13:40 +0000
 Subject: [PATCH] Spam Filter Exclusions
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 36a099d138..260d23562e 100644
+index f5da7beda..656e31084 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -1888,7 +1888,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -1889,7 +1889,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              if (optional.isPresent()) {
                  this.server.submit(() -> {
                      this.performChatCommand(serverboundchatcommandpacket, (LastSeenMessages) optional.get());
@@ -17,7 +17,7 @@ index 36a099d138..260d23562e 100644
                  });
              }
  
-@@ -2161,11 +2161,22 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2162,11 +2162,22 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
          }
          // this.server.getPlayerList().broadcastChatMessage(playerchatmessage, this.player, ChatMessageType.bind(ChatMessageType.CHAT, (Entity) this.player));
          // CraftBukkit end
@@ -43,7 +43,7 @@ index 36a099d138..260d23562e 100644
          if (this.chatSpamTickCount.addAndGet(20) > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
              // CraftBukkit end
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index cf7c624bc5..4f9b55c713 100644
+index cf7c624bc..4f9b55c71 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -6,6 +6,7 @@ import java.io.IOException;
@@ -69,5 +69,5 @@ index cf7c624bc5..4f9b55c713 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 

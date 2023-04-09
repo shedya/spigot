@@ -1,4 +1,4 @@
-From 29ca81f81a4f1a4dbd6813b9dc98cb7e93b65551 Mon Sep 17 00:00:00 2001
+From 87e824cd55adf4969b13a88d2a6f53fec937d868 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 15 Apr 2014 10:32:48 +1000
 Subject: [PATCH] Fix Player Banning
@@ -6,7 +6,7 @@ Subject: [PATCH] Fix Player Banning
 This issue stems from the fact that Bukkit's API only allows a UUID to be banned, but Minecraft requires both a UUID and name. To fix this we modify the code to require a UUID or a name, or both. The correct fix would be expanding the API to be able to provide a name, however this would require plugin changes.
 
 diff --git a/src/main/java/net/minecraft/server/players/GameProfileBanEntry.java b/src/main/java/net/minecraft/server/players/GameProfileBanEntry.java
-index e7085ccdd7..904c9f162f 100644
+index e7085ccdd..904c9f162 100644
 --- a/src/main/java/net/minecraft/server/players/GameProfileBanEntry.java
 +++ b/src/main/java/net/minecraft/server/players/GameProfileBanEntry.java
 @@ -40,20 +40,29 @@ public class GameProfileBanEntry extends ExpirableListEntry<GameProfile> {
@@ -45,5 +45,5 @@ index e7085ccdd7..904c9f162f 100644
      }
  }
 -- 
-2.34.1
+2.40.0
 

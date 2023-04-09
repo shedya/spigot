@@ -1,4 +1,4 @@
-From 84af708918159d210b77b00d5a4a79656b89c73b Mon Sep 17 00:00:00 2001
+From 3bd035712e004000180fd79a90d3abbdb54d6099 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -516,5 +516,5 @@ index f740bebe..94852d50 100644
  
      @NotNull
 -- 
-2.34.1
+2.40.0
 

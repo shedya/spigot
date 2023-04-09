@@ -1,11 +1,11 @@
-From 972af63ee3017d58e94b69e54553d11bc647c878 Mon Sep 17 00:00:00 2001
+From 4ba97342b95d15a6fb5f2c97480fdf68a7f4d32a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 26 Jan 2017 21:50:51 +0000
 Subject: [PATCH] Highly Optimized Tick Loop
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 35bdb154f9..afcf0f78e2 100644
+index 35bdb154f..afcf0f78e 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -291,6 +291,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -66,7 +66,7 @@ index 35bdb154f9..afcf0f78e2 100644
                      this.debugCommandProfilerDelayStart = false;
                      this.debugCommandProfiler = new MinecraftServer.TimeProfiler(SystemUtils.getNanos(), this.tickCount);
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 0aab647abb..4987040ff2 100644
+index 0aab647ab..4987040ff 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -266,4 +266,9 @@ public class SpigotConfig
@@ -81,7 +81,7 @@ index 0aab647abb..4987040ff2 100644
  }
 diff --git a/src/main/java/org/spigotmc/TicksPerSecondCommand.java b/src/main/java/org/spigotmc/TicksPerSecondCommand.java
 new file mode 100644
-index 0000000000..f5b6dec1cb
+index 000000000..f5b6dec1c
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/TicksPerSecondCommand.java
 @@ -0,0 +1,45 @@
@@ -131,5 +131,5 @@ index 0000000000..f5b6dec1cb
 +    }
 +}
 -- 
-2.34.1
+2.40.0
 

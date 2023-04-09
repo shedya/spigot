@@ -1,14 +1,14 @@
-From 45d182fb8a7298d27c35fd029e28590f11ebb590 Mon Sep 17 00:00:00 2001
+From 727f0efdf0b41ab323c64290330e5c9ca12caef6 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 23 Dec 2013 15:57:57 +1100
 Subject: [PATCH] Disable Connected Check on setScoreboard
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 2ed04f68d..0c2a7969c 100644
+index 5d76e332c..8c2a40496 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1841,7 +1841,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1843,7 +1843,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
              throw new IllegalStateException("Cannot set scoreboard yet");
          }
          if (playerConnection.isDisconnected()) {
@@ -18,5 +18,5 @@ index 2ed04f68d..0c2a7969c 100644
  
          this.server.getScoreboardManager().setPlayerBoard(this, scoreboard);
 -- 
-2.34.1
+2.40.0
 

@@ -1,11 +1,11 @@
-From e9ff129e6181f7115d8402346221089e39fe029e Mon Sep 17 00:00:00 2001
+From 959add00519cb56e61b1b43818c8b37e48d3ab0e Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
 
 
 diff --git a/src/main/java/net/minecraft/network/PacketDataSerializer.java b/src/main/java/net/minecraft/network/PacketDataSerializer.java
-index 16b3a6a56f..e6313cb648 100644
+index 16b3a6a56..e6313cb64 100644
 --- a/src/main/java/net/minecraft/network/PacketDataSerializer.java
 +++ b/src/main/java/net/minecraft/network/PacketDataSerializer.java
 @@ -672,6 +672,10 @@ public class PacketDataSerializer extends ByteBuf {
@@ -20,7 +20,7 @@ index 16b3a6a56f..e6313cb648 100644
              }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-index 967d5ba30b..82c1487db7 100644
+index 967d5ba30..82c1487db 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
 @@ -20,6 +20,10 @@ import org.bukkit.craftbukkit.util.CraftChatMessage;
@@ -58,7 +58,7 @@ index 967d5ba30b..82c1487db7 100644
          }
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-index 6ba71fb623..87aaa0ec71 100644
+index 5ece149e3..198b0baf3 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 @@ -77,6 +77,10 @@ import org.bukkit.inventory.meta.Repairable;
@@ -72,7 +72,7 @@ index 6ba71fb623..87aaa0ec71 100644
  /**
   * Children must include the following:
   *
-@@ -329,18 +333,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
+@@ -331,18 +335,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
              NBTTagCompound display = tag.getCompound(DISPLAY.NBT);
  
              if (display.contains(NAME.NBT)) {
@@ -96,7 +96,7 @@ index 6ba71fb623..87aaa0ec71 100644
              }
 diff --git a/src/main/java/org/spigotmc/ValidateUtils.java b/src/main/java/org/spigotmc/ValidateUtils.java
 new file mode 100644
-index 0000000000..58a9534816
+index 000000000..58a953481
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/ValidateUtils.java
 @@ -0,0 +1,14 @@
@@ -115,5 +115,5 @@ index 0000000000..58a9534816
 +    }
 +}
 -- 
-2.34.1
+2.40.0
 

@@ -1,14 +1,14 @@
-From 9fb35da80f9d5ee54e29ab5762060fb275ca4550 Mon Sep 17 00:00:00 2001
+From 404f51d98731f5bdc734335c73e55dbaa9eedebc Mon Sep 17 00:00:00 2001
 From: ninja <xninja@openmailbox.org>
 Date: Tue, 8 Apr 2014 14:05:19 +0200
 Subject: [PATCH] Implement PlayerSpawnLocationEvent.
 
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 8570685135..8fbef6a7b9 100644
+index 0c7dcff75..5d74a8701 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -227,6 +227,19 @@ public abstract class PlayerList {
+@@ -228,6 +228,19 @@ public abstract class PlayerList {
              s1 = networkmanager.getRemoteAddress().toString();
          }
  
@@ -29,5 +29,5 @@ index 8570685135..8fbef6a7b9 100644
          // PlayerList.LOGGER.info("{}[{}] logged in with entity id {} at ({}, {}, {})", new Object[]{entityplayer.getName().getString(), s1, entityplayer.getId(), entityplayer.getX(), entityplayer.getY(), entityplayer.getZ()});
          WorldData worlddata = worldserver1.getLevelData();
 -- 
-2.34.1
+2.40.0
 

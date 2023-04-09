@@ -1,4 +1,4 @@
-From 98e651e6077728ba664bdcd14375d9a0c41fe78d Mon Sep 17 00:00:00 2001
+From 3d768f67ec0bd4308dfe8faf7a03d44cc15c907d Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -170,10 +170,10 @@ index 6d6b3abd1..926848b82 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-index 01d9473d2..18bed57f1 100644
+index 88833a1b7..17f021780 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-@@ -207,7 +207,7 @@ public class CraftChunk implements Chunk {
+@@ -215,7 +215,7 @@ public class CraftChunk implements Chunk {
      @Override
      public boolean isSlimeChunk() {
          // 987234911L is deterimined in EntitySlime when seeing if a slime can spawn in a chunk
@@ -228,5 +228,5 @@ index 33d74abad..ad0a04ff9 100644
 +    }
  }
 -- 
-2.34.1
+2.40.0
 
