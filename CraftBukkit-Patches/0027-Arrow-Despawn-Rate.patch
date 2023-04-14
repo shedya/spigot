@@ -1,4 +1,4 @@
-From 20c175ee7736bd62a28175ef7fc3ea98581cd198 Mon Sep 17 00:00:00 2001
+From f17986b40fbc3ba9f96e8874638e3617a7f91a06 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Mon, 14 Oct 2013 19:20:10 +1100
 Subject: [PATCH] Arrow Despawn Rate
@@ -18,10 +18,10 @@ index b215f9ed7..6505b88c7 100644
          }
  
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 8377ecfb8..2dd50a03d 100644
+index cec948a05..4894096ae 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -244,4 +244,13 @@ public class SpigotWorldConfig
+@@ -246,4 +246,13 @@ public class SpigotWorldConfig
          hopperCanLoadChunks = getBoolean( "hopper-can-load-chunks", false );
          log( "Hopper Transfer: " + hopperTransfer + " Hopper Check: " + hopperCheck + " Hopper Amount: " + hopperAmount + " Hopper Can Load Chunks: " + hopperCanLoadChunks );
      }

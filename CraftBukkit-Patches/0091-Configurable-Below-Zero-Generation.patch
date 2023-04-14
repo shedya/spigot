@@ -1,4 +1,4 @@
-From 652c9489d4d4df13e96b6faefec05c8337c3107d Mon Sep 17 00:00:00 2001
+From 8ca96dd29a5ac3f5bbcaf17481e51ac59005c6b8 Mon Sep 17 00:00:00 2001
 From: DerFrZocker <derrieple@gmail.com>
 Date: Sun, 28 Nov 2021 12:09:29 +1100
 Subject: [PATCH] Configurable Below Zero Generation
@@ -51,10 +51,10 @@ index a5c61d003..50b6f0219 100644
 +    }
  }
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 57be56742..c98fadd11 100644
+index b6ac09ee9..ebddbf6d0 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -386,4 +386,9 @@ public class SpigotWorldConfig
+@@ -388,4 +388,9 @@ public class SpigotWorldConfig
      {
          thunderChance = getInt("thunder-chance", 100000);
      }

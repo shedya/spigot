@@ -1,14 +1,14 @@
-From d97cb9d0353fab5fdf8631aa2948c4978450e128 Mon Sep 17 00:00:00 2001
+From 38100f794d7d8d9d48e744d2d19d00fada19ed03 Mon Sep 17 00:00:00 2001
 From: ninja- <xninja@openmailbox.org>
 Date: Tue, 8 Oct 2013 14:34:49 +0200
 Subject: [PATCH] Implement respawn API.
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 70f1268d6..ff1a3253c 100644
+index 79ae87ed4..b1dfef069 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -2106,6 +2106,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2105,6 +2105,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          public void setCollidesWithEntities(boolean collides) {
              CraftPlayer.this.setCollidable(collides);
          }

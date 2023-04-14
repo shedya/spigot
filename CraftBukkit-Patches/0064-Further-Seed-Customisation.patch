@@ -1,4 +1,4 @@
-From 3d768f67ec0bd4308dfe8faf7a03d44cc15c907d Mon Sep 17 00:00:00 2001
+From 673d6a2ba3ab66958feb92352bd6462000fc46cf Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -183,10 +183,10 @@ index 88833a1b7..17f021780 100644
  
      @Override
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 33d74abad..ad0a04ff9 100644
+index 7f5f97def..7882c95f4 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -292,4 +292,40 @@ public class SpigotWorldConfig
+@@ -294,4 +294,40 @@ public class SpigotWorldConfig
      {
          endPortalSoundRadius = getInt( "end-portal-sound-radius", 0 );
      }
