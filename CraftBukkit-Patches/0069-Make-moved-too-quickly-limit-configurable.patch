@@ -1,14 +1,14 @@
-From 51a468b1795189245f63dd4c4ecfdbff1c88ed12 Mon Sep 17 00:00:00 2001
+From 1efa712f1561cbfe31f9671b938916f8a313c67d Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Tue, 22 Jul 2014 15:59:01 +0200
 Subject: [PATCH] Make "moved too quickly" limit configurable
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 7dde26327..39bc8a835 100644
+index e02e968de..4b1257cb7 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -592,7 +592,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -593,7 +593,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                  }
                  speed *= 2f; // TODO: Get the speed of the vehicle instead of the player
  
@@ -17,7 +17,7 @@ index 7dde26327..39bc8a835 100644
                  // CraftBukkit end
                      PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved too quickly! {},{},{}", new Object[]{entity.getName().getString(), this.player.getName().getString(), d6, d7, d8});
                      this.connection.send(new PacketPlayOutVehicleMove(entity));
-@@ -1265,7 +1265,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -1266,7 +1266,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                              if (!this.player.isChangingDimension() && (!this.player.getLevel().getGameRules().getBoolean(GameRules.RULE_DISABLE_ELYTRA_MOVEMENT_CHECK) || !this.player.isFallFlying())) {
                                  float f2 = this.player.isFallFlying() ? 300.0F : 100.0F;
  

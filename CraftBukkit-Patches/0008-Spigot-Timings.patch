@@ -1,4 +1,4 @@
-From 1981648d33b09ba7b7922b19e4f2d325f297ccea Mon Sep 17 00:00:00 2001
+From 3ee41388e5a0662c4948211a1910bd2fff600f8a Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -282,10 +282,10 @@ index d6aae074c..95f6db3de 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index a7267ae34..f92e8bac5 100644
+index 55b5c5b99..2148292f1 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -338,6 +338,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -339,6 +339,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
      @Override
      public void tick() {
@@ -293,7 +293,7 @@ index a7267ae34..f92e8bac5 100644
          if (this.ackBlockChangesUpTo > -1) {
              this.send(new ClientboundBlockChangedAckPacket(this.ackBlockChangesUpTo));
              this.ackBlockChangesUpTo = -1;
-@@ -418,6 +419,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -419,6 +420,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              this.player.resetLastActionTime(); // CraftBukkit - SPIGOT-854
              this.disconnect(IChatBaseComponent.translatable("multiplayer.disconnect.idling"));
          }
@@ -301,7 +301,7 @@ index a7267ae34..f92e8bac5 100644
  
      }
  
-@@ -2093,6 +2095,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2094,6 +2096,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
      }
  
      private void handleCommand(String s) {
@@ -309,7 +309,7 @@ index a7267ae34..f92e8bac5 100644
          this.LOGGER.info(this.player.getScoreboardName() + " issued server command: " + s);
  
          CraftPlayer player = this.getCraftPlayer();
-@@ -2101,6 +2104,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2102,6 +2105,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
          this.cserver.getPluginManager().callEvent(event);
  
          if (event.isCancelled()) {
@@ -317,7 +317,7 @@ index a7267ae34..f92e8bac5 100644
              return;
          }
  
-@@ -2112,6 +2116,8 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2113,6 +2117,8 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              player.sendMessage(org.bukkit.ChatColor.RED + "An internal error occurred while attempting to perform this command");
              java.util.logging.Logger.getLogger(PlayerConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
              return;
@@ -327,7 +327,7 @@ index a7267ae34..f92e8bac5 100644
      }
      // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index e10e9845f..7d487f4d3 100644
+index f8a9278b8..d0c831d79 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -136,6 +136,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
@@ -338,7 +338,7 @@ index e10e9845f..7d487f4d3 100644
  import org.bukkit.event.entity.EntityCombustByEntityEvent;
  import org.bukkit.event.hanging.HangingBreakByEntityEvent;
  import org.bukkit.event.vehicle.VehicleBlockCollisionEvent;
-@@ -303,6 +304,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -304,6 +305,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      public boolean lastDamageCancelled; // SPIGOT-5339, SPIGOT-6252, SPIGOT-6777: Keep track if the event was canceled
      public boolean persistentInvisibility = false;
      public BlockPosition lastLavaContact;
@@ -346,7 +346,7 @@ index e10e9845f..7d487f4d3 100644
  
      public float getBukkitYaw() {
          return this.yRot;
-@@ -733,6 +735,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -734,6 +736,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      }
  
      public void move(EnumMoveType enummovetype, Vec3D vec3d) {
@@ -354,7 +354,7 @@ index e10e9845f..7d487f4d3 100644
          if (this.noPhysics) {
              this.setPos(this.getX() + vec3d.x, this.getY() + vec3d.y, this.getZ() + vec3d.z);
          } else {
-@@ -896,6 +899,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -897,6 +900,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
                  this.level.getProfiler().pop();
              }
          }
@@ -589,10 +589,10 @@ index b5f0b9753..080e081ff 100644
          };
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index e4bb83d1e..2276d148b 100644
+index ad925597d..b3d1a351d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -2314,6 +2314,11 @@ public final class CraftServer implements Server {
+@@ -2315,6 +2315,11 @@ public final class CraftServer implements Server {
      private final org.bukkit.Server.Spigot spigot = new org.bukkit.Server.Spigot()
      {
  

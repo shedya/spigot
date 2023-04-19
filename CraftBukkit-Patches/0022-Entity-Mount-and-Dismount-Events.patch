@@ -1,14 +1,14 @@
-From c0f780e1ae0e7bd79859533515b85b45341a1916 Mon Sep 17 00:00:00 2001
+From edab2c3173d7357505698991b7efd5872b0e57e3 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 27 Feb 2016 10:07:58 +1100
 Subject: [PATCH] Entity Mount and Dismount Events
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index a49ecea85..b5e6e7989 100644
+index 4cd20df28..c9f2ac3b6 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -2262,6 +2262,16 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -2263,6 +2263,16 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
                  }
              }
              // CraftBukkit end
@@ -25,7 +25,7 @@ index a49ecea85..b5e6e7989 100644
              if (this.passengers.isEmpty()) {
                  this.passengers = ImmutableList.of(entity);
              } else {
-@@ -2304,6 +2314,16 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -2305,6 +2315,16 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
                  }
              }
              // CraftBukkit end

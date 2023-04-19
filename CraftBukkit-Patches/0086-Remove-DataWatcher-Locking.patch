@@ -1,4 +1,4 @@
-From 4ef1765d5136b003bed25396acc3b8531d41b5f9 Mon Sep 17 00:00:00 2001
+From d4557b525b07ebf35558b4349e721b0869b4f92e Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Tue, 9 Jul 2019 02:18:54 -0700
 Subject: [PATCH] Remove DataWatcher Locking
@@ -118,10 +118,10 @@ index 92b6a3fa8..e3b8a0541 100644
  
          this.entity.onSyncedDataUpdated(list);
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 1f2b8f62e..acf64f154 100644
+index dc52a9b8d..0437bd194 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -363,6 +363,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -364,6 +364,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.entityData.define(Entity.DATA_POSE, EntityPose.STANDING);
          this.entityData.define(Entity.DATA_TICKS_FROZEN, 0);
          this.defineSynchedData();

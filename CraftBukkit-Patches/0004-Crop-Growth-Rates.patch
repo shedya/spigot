@@ -1,4 +1,4 @@
-From 4fb91024123b97d0574b1e5327df2757dfe82bc4 Mon Sep 17 00:00:00 2001
+From 5dcebf9cb35f297efd2b28466684c67bc4102b63 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 7 Mar 2016 22:14:13 +1100
 Subject: [PATCH] Crop Growth Rates
@@ -184,10 +184,10 @@ index 442200504..5ffaeaac9 100644
                  }
              }
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockSapling.java b/src/main/java/net/minecraft/world/level/block/BlockSapling.java
-index 4932b7f37..5dbe60313 100644
+index 5928ea2ac..20a946f89 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockSapling.java
 +++ b/src/main/java/net/minecraft/world/level/block/BlockSapling.java
-@@ -43,7 +43,7 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
+@@ -44,7 +44,7 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
  
      @Override
      public void randomTick(IBlockData iblockdata, WorldServer worldserver, BlockPosition blockposition, RandomSource randomsource) {

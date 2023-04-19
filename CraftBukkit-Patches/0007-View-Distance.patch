@@ -1,4 +1,4 @@
-From d0f729672e3c4bc02ce0a595c84bbf5df8e18ad3 Mon Sep 17 00:00:00 2001
+From f9a2d86fb41bbeda1f0e2313699f4f5d759448fa Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 23 Mar 2013 09:52:41 +1100
 Subject: [PATCH] View Distance
@@ -21,7 +21,7 @@ index 6e38b63bf..d6aae074c 100644
  
          Objects.requireNonNull(this.entityManager);
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index adf616edd..b3f5811ad 100644
+index 7f8261c34..ef05008c7 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -238,7 +238,8 @@ public abstract class PlayerList {
@@ -42,12 +42,12 @@ index adf616edd..b3f5811ad 100644
 +        entityplayer1.connection.send(new ClientboundSetSimulationDistancePacket(worldserver1.spigotConfig.simulationDistance)); // Spigot
          entityplayer1.spawnIn(worldserver1);
          entityplayer1.unsetRemoved();
-         entityplayer1.connection.teleport(new Location(worldserver1.getWorld(), entityplayer1.getX(), entityplayer1.getY(), entityplayer1.getZ(), entityplayer1.getYRot(), entityplayer1.getXRot()));
+         entityplayer1.connection.teleport(CraftLocation.toBukkit(entityplayer1.position(), worldserver1.getWorld(), entityplayer1.getYRot(), entityplayer1.getXRot()));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 94eb9fbd4..bc8042e47 100644
+index c43f5f5ac..ddf14e5f6 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1932,6 +1932,18 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -1933,6 +1933,18 @@ public class CraftWorld extends CraftRegionAccessor implements World {
          }
      }
  
