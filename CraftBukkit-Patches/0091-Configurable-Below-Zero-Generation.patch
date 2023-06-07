@@ -1,11 +1,11 @@
-From 8ca96dd29a5ac3f5bbcaf17481e51ac59005c6b8 Mon Sep 17 00:00:00 2001
+From eb69625509c465fc1238ea7a6cb85cfd0ac40c9c Mon Sep 17 00:00:00 2001
 From: DerFrZocker <derrieple@gmail.com>
 Date: Sun, 28 Nov 2021 12:09:29 +1100
 Subject: [PATCH] Configurable Below Zero Generation
 
 
 diff --git a/src/main/java/net/minecraft/world/level/chunk/storage/IChunkLoader.java b/src/main/java/net/minecraft/world/level/chunk/storage/IChunkLoader.java
-index 4510f4acc..991d54a4b 100644
+index 4510f4acc..677da7678 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/storage/IChunkLoader.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/storage/IChunkLoader.java
 @@ -101,12 +101,27 @@ public class IChunkLoader implements AutoCloseable {
@@ -17,7 +17,7 @@ index 4510f4acc..991d54a4b 100644
 +        boolean belowZeroGenerationInExistingChunks = (generatoraccess != null) ? ((WorldServer) generatoraccess).spigotConfig.belowZeroGenerationInExistingChunks : org.spigotmc.SpigotConfig.belowZeroGenerationInExistingChunks;
 +
 +        if (i <= 2730 && !belowZeroGenerationInExistingChunks) {
-+            stopBelowZero = ChunkStatus.FULL.getName().equals(nbttagcompound.getCompound("Level").getString("Status"));
++            stopBelowZero = "full".equals(nbttagcompound.getCompound("Level").getString("Status"));
 +        }
 +        // Spigot end
 +
@@ -29,7 +29,7 @@ index 4510f4acc..991d54a4b 100644
  
 +        // Spigot start
 +        if (stopBelowZero) {
-+            nbttagcompound.putString("Status", ChunkStatus.HEIGHTMAPS.getName());
++            nbttagcompound.putString("Status", net.minecraft.core.registries.BuiltInRegistries.CHUNK_STATUS.getKey(ChunkStatus.SPAWN).toString());
 +        }
 +        // Spigot end
 +
@@ -65,5 +65,5 @@ index b6ac09ee9..ebddbf6d0 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 

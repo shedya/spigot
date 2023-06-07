@@ -1,4 +1,4 @@
-From 1d5e58ee84d80eeaa4a0bdd0bc4fc34a4e3a3eca Mon Sep 17 00:00:00 2001
+From a4ede9644bcfefc7fc72a3df024983a48b17e782 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Sun, 29 Jun 2014 21:10:34 +0100
 Subject: [PATCH] Limit block placement/interaction packets
@@ -45,7 +45,7 @@ index 675909dc6..44ed8f10d 100644
          this.blockHit = packetdataserializer.readBlockHitResult();
          this.sequence = packetdataserializer.readVarInt();
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index dbfc1130a..bf63378ca 100644
+index 8eff3b9fb..4427a92ae 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -1586,10 +1586,30 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
@@ -73,20 +73,20 @@ index dbfc1130a..bf63378ca 100644
 +
      @Override
      public void handleUseItemOn(PacketPlayInUseItem packetplayinuseitem) {
-         PlayerConnectionUtils.ensureRunningOnSameThread(packetplayinuseitem, this, this.player.getLevel());
+         PlayerConnectionUtils.ensureRunningOnSameThread(packetplayinuseitem, this, this.player.serverLevel());
          if (this.player.isImmobile()) return; // CraftBukkit
 +        if (!checkLimit(packetplayinuseitem.timestamp)) return; // Spigot - check limit
          this.player.connection.ackBlockChangesUpTo(packetplayinuseitem.getSequence());
-         WorldServer worldserver = this.player.getLevel();
+         WorldServer worldserver = this.player.serverLevel();
          EnumHand enumhand = packetplayinuseitem.getHand();
 @@ -1643,6 +1663,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
      public void handleUseItem(PacketPlayInBlockPlace packetplayinblockplace) {
-         PlayerConnectionUtils.ensureRunningOnSameThread(packetplayinblockplace, this, this.player.getLevel());
+         PlayerConnectionUtils.ensureRunningOnSameThread(packetplayinblockplace, this, this.player.serverLevel());
          if (this.player.isImmobile()) return; // CraftBukkit
 +        if (!checkLimit(packetplayinblockplace.timestamp)) return; // Spigot - check limit
          this.ackBlockChangesUpTo(packetplayinblockplace.getSequence());
-         WorldServer worldserver = this.player.getLevel();
+         WorldServer worldserver = this.player.serverLevel();
          EnumHand enumhand = packetplayinblockplace.getHand();
 -- 
-2.40.0
+2.40.1
 

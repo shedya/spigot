@@ -1,11 +1,11 @@
-From a8cafbf6616ba58bb9b7c912eda4532cf84e4cc0 Mon Sep 17 00:00:00 2001
+From a87f81d23f0baeab7103642729e735b22bb8040e Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
 
 
 diff --git a/src/main/java/net/minecraft/server/network/HandshakeListener.java b/src/main/java/net/minecraft/server/network/HandshakeListener.java
-index 753de5b0a2..3a9ac2a831 100644
+index 4c79b0f0b..587e00148 100644
 --- a/src/main/java/net/minecraft/server/network/HandshakeListener.java
 +++ b/src/main/java/net/minecraft/server/network/HandshakeListener.java
 @@ -75,9 +75,9 @@ public class HandshakeListener implements PacketHandshakingInListener {
@@ -21,10 +21,10 @@ index 753de5b0a2..3a9ac2a831 100644
  
                      this.connection.send(new PacketLoginOutDisconnect(ichatmutablecomponent));
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index ef05008c71..6751019726 100644
+index 958c7f395..2c4b6d960 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -603,7 +603,7 @@ public abstract class PlayerList {
+@@ -610,7 +610,7 @@ public abstract class PlayerList {
              event.disallow(PlayerLoginEvent.Result.KICK_BANNED, CraftChatMessage.fromComponent(ichatmutablecomponent));
          } else if (!this.isWhiteListed(gameprofile)) {
              ichatmutablecomponent = IChatBaseComponent.translatable("multiplayer.disconnect.not_whitelisted");
@@ -33,7 +33,7 @@ index ef05008c71..6751019726 100644
          } else if (getIpBans().isBanned(socketaddress) && !getIpBans().get(socketaddress).hasExpired()) {
              IpBanEntry ipbanentry = this.ipBans.get(socketaddress);
  
-@@ -617,7 +617,7 @@ public abstract class PlayerList {
+@@ -624,7 +624,7 @@ public abstract class PlayerList {
          } else {
              // return this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile) ? IChatBaseComponent.translatable("multiplayer.disconnect.server_full") : null;
              if (this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile)) {
@@ -43,10 +43,10 @@ index ef05008c71..6751019726 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 7b091fc64a..b2bf396e35 100644
+index 8cc73d378..ed2d4939b 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -825,11 +825,11 @@ public final class CraftServer implements Server {
+@@ -845,11 +845,11 @@ public final class CraftServer implements Server {
              return true;
          }
  
@@ -63,7 +63,7 @@ index 7b091fc64a..b2bf396e35 100644
          return false;
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index fc352ecf10..8ad8b25894 100644
+index fc352ecf1..8ad8b2589 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -12,6 +12,7 @@ import java.util.Map;

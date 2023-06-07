@@ -1,4 +1,4 @@
-From 673d6a2ba3ab66958feb92352bd6462000fc46cf Mon Sep 17 00:00:00 2001
+From 7f4bb520cb6790497fdbf6081de7b4e33974753f Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -6,10 +6,10 @@ Subject: [PATCH] Further Seed Customisation
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
 diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-index 299724c49..2516fd68b 100644
+index 034f4416e..332d8bc55 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-@@ -213,7 +213,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -212,7 +212,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
              this.randomState = RandomState.create(GeneratorSettingBase.dummy(), (HolderGetter) iregistrycustom.lookupOrThrow(Registries.NOISE), j);
          }
  
@@ -19,7 +19,7 @@ index 299724c49..2516fd68b 100644
          ThreadedMailbox<Runnable> threadedmailbox = ThreadedMailbox.create(executor, "worldgen");
  
 diff --git a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
-index 1d80f7cde..ce7cc4b65 100644
+index 2a7dc359f..410d0d588 100644
 --- a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
 +++ b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
 @@ -319,7 +319,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
@@ -170,7 +170,7 @@ index 6d6b3abd1..926848b82 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-index 88833a1b7..17f021780 100644
+index a66c5162d..58a611551 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 @@ -215,7 +215,7 @@ public class CraftChunk implements Chunk {
@@ -228,5 +228,5 @@ index 7f5f97def..7882c95f4 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 

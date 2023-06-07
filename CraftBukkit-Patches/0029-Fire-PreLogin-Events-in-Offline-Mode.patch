@@ -1,4 +1,4 @@
-From 792bc49f18e63485152db97dd8bfb43e579779dc Mon Sep 17 00:00:00 2001
+From d4d604814f11eb6bdb8317382b8dd5b612d9424e Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Wed, 18 Dec 2013 13:32:10 +1100
 Subject: [PATCH] Fire PreLogin Events in Offline Mode
@@ -143,5 +143,5 @@ index c406943f1..40f03ce23 100644
          this.disconnect(IChatBaseComponent.translatable("multiplayer.disconnect.unexpected_query_response"));
      }
 -- 
-2.40.0
+2.40.1
 

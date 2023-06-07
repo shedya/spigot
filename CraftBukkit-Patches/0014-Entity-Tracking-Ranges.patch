@@ -1,4 +1,4 @@
-From f23674e95c4867b96b114e7501d82b6af1b46d3f Mon Sep 17 00:00:00 2001
+From b8f416c0827c11bd4eb0d46db56958c9fdad9203 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Feb 2013 11:58:47 -0500
 Subject: [PATCH] Entity Tracking Ranges
@@ -12,10 +12,10 @@ This has multiple benefits:
 4) Less client lag - Not trying to render distant item frames and paintings and entities will reduce entity count on the client, which is major for shop/town worlds which may use tons of item frames.
 
 diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-index b05efe366..299724c49 100644
+index 8458f86c3..034f4416e 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-@@ -1307,6 +1307,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1328,6 +1328,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
          if (!(entity instanceof EntityComplexPart)) {
              EntityTypes<?> entitytypes = entity.getType();
              int i = entitytypes.clientTrackingRange() * 16;
@@ -51,7 +51,7 @@ index 936279b5f..ab984b210 100644
  }
 diff --git a/src/main/java/org/spigotmc/TrackingRange.java b/src/main/java/org/spigotmc/TrackingRange.java
 new file mode 100644
-index 000000000..c7a2d8fe7
+index 000000000..7121ffcd8
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/TrackingRange.java
 @@ -0,0 +1,59 @@
@@ -83,7 +83,7 @@ index 000000000..c7a2d8fe7
 +        {
 +            return defaultRange;
 +        }
-+        SpigotWorldConfig config = entity.level.spigotConfig;
++        SpigotWorldConfig config = entity.level().spigotConfig;
 +        if ( entity instanceof EntityPlayer )
 +        {
 +            return config.playerTrackingRange;
@@ -115,5 +115,5 @@ index 000000000..c7a2d8fe7
 +    }
 +}
 -- 
-2.40.0
+2.40.1
 

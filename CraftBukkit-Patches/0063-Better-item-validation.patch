@@ -1,4 +1,4 @@
-From 959add00519cb56e61b1b43818c8b37e48d3ab0e Mon Sep 17 00:00:00 2001
+From 6a11a9e07886d8022cd1080f071a545d832ef181 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
@@ -115,5 +115,5 @@ index 000000000..58a953481
 +    }
 +}
 -- 
-2.40.0
+2.40.1
 

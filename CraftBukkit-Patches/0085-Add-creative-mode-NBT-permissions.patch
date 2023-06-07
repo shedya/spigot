@@ -1,11 +1,11 @@
-From 8d99641a2f513078f11637b812f47cbab0be0a27 Mon Sep 17 00:00:00 2001
+From e2808d52fd8e397fbd3225ce1f7458663f4f5159 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 25 Feb 2019 19:26:56 +1100
 Subject: [PATCH] Add creative mode NBT permissions
 
 
 diff --git a/src/main/java/net/minecraft/server/level/PlayerInteractManager.java b/src/main/java/net/minecraft/server/level/PlayerInteractManager.java
-index 0b018f0376..530ea983d0 100644
+index 8db033653..a7b118ce9 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerInteractManager.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerInteractManager.java
 @@ -202,6 +202,14 @@ public class PlayerInteractManager {
@@ -24,7 +24,7 @@ index 0b018f0376..530ea983d0 100644
                      this.player.connection.send(new PacketPlayOutBlockChange(blockposition, this.level.getBlockState(blockposition)));
                      this.debugLogging(blockposition, false, j, "block action restricted");
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 765f55139d..6c8cca64cf 100644
+index 7761a7c07..5bba8ea16 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -2912,7 +2912,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
@@ -35,9 +35,9 @@ index 765f55139d..6c8cca64cf 100644
 +            if (!itemstack.isEmpty() && nbttagcompound != null && nbttagcompound.contains("x") && nbttagcompound.contains("y") && nbttagcompound.contains("z") && this.player.getBukkitEntity().hasPermission("minecraft.nbt.copy")) { // Spigot
                  BlockPosition blockposition = TileEntity.getPosFromTag(nbttagcompound);
  
-                 if (this.player.level.isLoaded(blockposition)) {
+                 if (this.player.level().isLoaded(blockposition)) {
 diff --git a/src/main/java/net/minecraft/world/item/ItemBlock.java b/src/main/java/net/minecraft/world/item/ItemBlock.java
-index d740bd14a9..386f22dfb5 100644
+index d740bd14a..386f22dfb 100644
 --- a/src/main/java/net/minecraft/world/item/ItemBlock.java
 +++ b/src/main/java/net/minecraft/world/item/ItemBlock.java
 @@ -230,7 +230,7 @@ public class ItemBlock extends Item {
@@ -50,22 +50,20 @@ index d740bd14a9..386f22dfb5 100644
                      }
  
 diff --git a/src/main/java/net/minecraft/world/item/ItemDebugStick.java b/src/main/java/net/minecraft/world/item/ItemDebugStick.java
-index b2a4f0e03b..e91ae1d323 100644
+index 177095589..fb59e6dfa 100644
 --- a/src/main/java/net/minecraft/world/item/ItemDebugStick.java
 +++ b/src/main/java/net/minecraft/world/item/ItemDebugStick.java
-@@ -56,8 +56,8 @@ public class ItemDebugStick extends Item {
-         return EnumInteractionResult.sidedSuccess(world.isClientSide);
+@@ -57,7 +57,7 @@ public class ItemDebugStick extends Item {
      }
  
--    private boolean handleInteraction(EntityHuman entityhuman, IBlockData iblockdata, GeneratorAccess generatoraccess, BlockPosition blockposition, boolean flag, ItemStack itemstack) {
+     public boolean handleInteraction(EntityHuman entityhuman, IBlockData iblockdata, GeneratorAccess generatoraccess, BlockPosition blockposition, boolean flag, ItemStack itemstack) {
 -        if (!entityhuman.canUseGameMasterBlocks()) {
-+    public boolean handleInteraction(EntityHuman entityhuman, IBlockData iblockdata, GeneratorAccess generatoraccess, BlockPosition blockposition, boolean flag, ItemStack itemstack) { // PAIL private -> public
 +        if (!entityhuman.canUseGameMasterBlocks() && !(entityhuman.getAbilities().instabuild && entityhuman.getBukkitEntity().hasPermission("minecraft.debugstick")) && !entityhuman.getBukkitEntity().hasPermission("minecraft.debugstick.always")) { // Spigot
              return false;
          } else {
              Block block = iblockdata.getBlock();
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/permissions/CraftDefaultPermissions.java b/src/main/java/org/bukkit/craftbukkit/util/permissions/CraftDefaultPermissions.java
-index 75f8d47a20..525ebf961e 100644
+index 75f8d47a2..525ebf961 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/permissions/CraftDefaultPermissions.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/permissions/CraftDefaultPermissions.java
 @@ -11,6 +11,12 @@ public final class CraftDefaultPermissions {

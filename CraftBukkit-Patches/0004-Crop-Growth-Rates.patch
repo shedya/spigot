@@ -1,4 +1,4 @@
-From 5dcebf9cb35f297efd2b28466684c67bc4102b63 Mon Sep 17 00:00:00 2001
+From f790a848a8056b9ea27a5ae615c31087c42a2d1c Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 7 Mar 2016 22:14:13 +1100
 Subject: [PATCH] Crop Growth Rates
@@ -6,10 +6,10 @@ Subject: [PATCH] Crop Growth Rates
 Allows configuring the growth rates of crops as a percentage of their normal growth rate.
 
 diff --git a/src/main/java/net/minecraft/world/level/block/Block.java b/src/main/java/net/minecraft/world/level/block/Block.java
-index a91584c26..163d53b46 100644
+index 36b3867d0..2df6560e5 100644
 --- a/src/main/java/net/minecraft/world/level/block/Block.java
 +++ b/src/main/java/net/minecraft/world/level/block/Block.java
-@@ -541,6 +541,18 @@ public class Block extends BlockBase implements IMaterial {
+@@ -529,6 +529,18 @@ public class Block extends BlockBase implements IMaterial {
      }
      // CraftBukkit end
  
@@ -55,7 +55,7 @@ index c02c220e8..5d80cc5dc 100644
          }
  
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockCactus.java b/src/main/java/net/minecraft/world/level/block/BlockCactus.java
-index ce4d02342..0a11d981c 100644
+index 3590e11e3..a1d3aaa14 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockCactus.java
 +++ b/src/main/java/net/minecraft/world/level/block/BlockCactus.java
 @@ -58,13 +58,14 @@ public class BlockCactus extends Block {
@@ -89,7 +89,7 @@ index e3bdcaef5..d1d3084b2 100644
  
              if (i < 2) {
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockCrops.java b/src/main/java/net/minecraft/world/level/block/BlockCrops.java
-index 305352332..ed14028d5 100644
+index f09b1f2d3..52a5196c8 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockCrops.java
 +++ b/src/main/java/net/minecraft/world/level/block/BlockCrops.java
 @@ -77,7 +77,20 @@ public class BlockCrops extends BlockPlant implements IBlockFragilePlantElement
@@ -166,7 +166,7 @@ index 4c98e09c2..626d93a4d 100644
              org.bukkit.craftbukkit.event.CraftEventFactory.handleBlockGrowEvent(worldserver, blockposition, iblockdata, 2); // CraftBukkit
          }
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockReed.java b/src/main/java/net/minecraft/world/level/block/BlockReed.java
-index 442200504..5ffaeaac9 100644
+index a1908f2f7..7c938cdd4 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockReed.java
 +++ b/src/main/java/net/minecraft/world/level/block/BlockReed.java
 @@ -55,10 +55,11 @@ public class BlockReed extends Block {
@@ -300,5 +300,5 @@ index 1cce14866..f42972427 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 

@@ -1,4 +1,4 @@
-From 1dc7e8e90ac94921cb10cb8d932c0c34bfda79c6 Mon Sep 17 00:00:00 2001
+From 02207c0e5604f2e8cc3011792c11f90e07cefe8c Mon Sep 17 00:00:00 2001
 From: Dmck2b <dmck2b+github@gmail.com>
 Date: Mon, 20 Jan 2014 20:18:23 +0000
 Subject: [PATCH] Allow toggling of ZombiePigmen spawning in portal blocks
@@ -34,5 +34,5 @@ index 3e398c4e0..d4eb3ccda 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 

@@ -1,11 +1,11 @@
-From 4a9f22c249ed96c60e1878c76dd72f1930d1b914 Mon Sep 17 00:00:00 2001
+From 8fef08229d608d4e29a0e5813b96fe04f3743c7a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
 
 
 diff --git a/pom.xml b/pom.xml
-index d0a464ab..e324c7b4 100644
+index 9b403cbc..2ac982a8 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -52,6 +52,13 @@
@@ -25,7 +25,7 @@ index d0a464ab..e324c7b4 100644
 @@ -189,6 +196,7 @@
                          <link>https://guava.dev/releases/31.1-jre/api/docs/</link>
                          <link>https://javadoc.io/doc/org.yaml/snakeyaml/1.33/</link>
-                         <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/23.0.0/</link>
+                         <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/24.0.1/</link>
 +                        <link>https://javadoc.io/doc/net.md-5/bungeecord-chat/1.16-R0.4/</link>
                      </links>
                      <tags>
@@ -293,10 +293,10 @@ index 6149c77d..e3f185dc 100644
       * Gets the char value associated with this color
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index d9df71bc..51336fe2 100644
+index 84c4163e..89ae947c 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1658,6 +1658,24 @@ public interface Server extends PluginMessageRecipient {
+@@ -1683,6 +1683,24 @@ public interface Server extends PluginMessageRecipient {
          public org.bukkit.configuration.file.YamlConfiguration getConfig() {
              throw new UnsupportedOperationException("Not supported yet.");
          }
@@ -370,10 +370,10 @@ index 4b6b9540..284be63a 100644
  
      @NotNull
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 58cf6ab0..7fffb5cd 100644
+index 03d7c34d..ee60f96a 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1797,6 +1797,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1820,6 +1820,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          public java.util.Set<Player> getHiddenPlayers() {
              throw new UnsupportedOperationException("Not supported yet.");
          }

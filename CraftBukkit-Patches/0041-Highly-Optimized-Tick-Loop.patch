@@ -1,11 +1,11 @@
-From 4ba97342b95d15a6fb5f2c97480fdf68a7f4d32a Mon Sep 17 00:00:00 2001
+From a0e6fc8eb94d742e6b87ff7059d29d37102ac515 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 26 Jan 2017 21:50:51 +0000
 Subject: [PATCH] Highly Optimized Tick Loop
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 35bdb154f..afcf0f78e 100644
+index 0b322b9fd..ab7ace3f5 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -291,6 +291,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -21,7 +21,7 @@ index 35bdb154f..afcf0f78e 100644
  
      public static <S extends MinecraftServer> S spin(Function<Thread, S> function) {
          AtomicReference<S> atomicreference = new AtomicReference();
-@@ -951,6 +957,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -949,6 +955,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
  
      }
  
@@ -35,7 +35,7 @@ index 35bdb154f..afcf0f78e 100644
      protected void runServer() {
          try {
              if (!this.initServer()) {
-@@ -961,8 +974,11 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -959,8 +972,11 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
              this.statusIcon = (ServerPing.a) this.loadStatusIcon().orElse(null); // CraftBukkit - decompile error
              this.status = this.buildServerStatus();
  
@@ -48,7 +48,7 @@ index 35bdb154f..afcf0f78e 100644
  
                  if (i > 5000L && this.nextTickTime - this.lastOverloadWarning >= 30000L) { // CraftBukkit
                      long j = i / 50L;
-@@ -973,6 +989,16 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -971,6 +987,16 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
                      this.lastOverloadWarning = this.nextTickTime;
                  }
  
@@ -131,5 +131,5 @@ index 000000000..f5b6dec1c
 +    }
 +}
 -- 
-2.40.0
+2.40.1
 

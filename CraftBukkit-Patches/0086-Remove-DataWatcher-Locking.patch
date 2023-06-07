@@ -1,4 +1,4 @@
-From d4557b525b07ebf35558b4349e721b0869b4f92e Mon Sep 17 00:00:00 2001
+From fd7c82e0cebf4f1eaa40813f0ed4f2f2ea2ea0a3 Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Tue, 9 Jul 2019 02:18:54 -0700
 Subject: [PATCH] Remove DataWatcher Locking
@@ -17,7 +17,7 @@ This patch also changes the entries map to be fastutil
 int2objectopenhashmap for performance.
 
 diff --git a/src/main/java/net/minecraft/network/syncher/DataWatcher.java b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
-index 92b6a3fa8..e3b8a0541 100644
+index ac10ddf35..78d475649 100644
 --- a/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 +++ b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 @@ -36,7 +36,7 @@ public class DataWatcher {
@@ -39,7 +39,7 @@ index 92b6a3fa8..e3b8a0541 100644
          int i = datawatcherobject.getId();
  
          if (i > 254) {
-@@ -102,12 +104,14 @@ public class DataWatcher {
+@@ -102,9 +104,9 @@ public class DataWatcher {
      private <T> void createDataItem(DataWatcherObject<T> datawatcherobject, T t0) {
          DataWatcher.Item<T> datawatcher_item = new DataWatcher.Item<>(datawatcherobject, t0);
  
@@ -50,13 +50,17 @@ index 92b6a3fa8..e3b8a0541 100644
 +        // this.lock.writeLock().unlock(); // Spigot - not required
      }
  
+     public <T> boolean hasItem(DataWatcherObject<T> datawatcherobject) {
+@@ -112,6 +114,8 @@ public class DataWatcher {
+     }
+ 
      private <T> DataWatcher.Item<T> getItem(DataWatcherObject<T> datawatcherobject) {
 +        // Spigot start
 +        /*
          this.lock.readLock().lock();
  
          DataWatcher.Item datawatcher_item;
-@@ -125,6 +129,9 @@ public class DataWatcher {
+@@ -129,6 +133,9 @@ public class DataWatcher {
          }
  
          return datawatcher_item;
@@ -66,7 +70,7 @@ index 92b6a3fa8..e3b8a0541 100644
      }
  
      public <T> T get(DataWatcherObject<T> datawatcherobject) {
-@@ -163,7 +170,7 @@ public class DataWatcher {
+@@ -167,7 +174,7 @@ public class DataWatcher {
          List<DataWatcher.b<?>> list = null;
  
          if (this.isDirty) {
@@ -75,7 +79,7 @@ index 92b6a3fa8..e3b8a0541 100644
              ObjectIterator objectiterator = this.itemsById.values().iterator();
  
              while (objectiterator.hasNext()) {
-@@ -179,7 +186,7 @@ public class DataWatcher {
+@@ -183,7 +190,7 @@ public class DataWatcher {
                  }
              }
  
@@ -84,7 +88,7 @@ index 92b6a3fa8..e3b8a0541 100644
          }
  
          this.isDirty = false;
-@@ -190,7 +197,7 @@ public class DataWatcher {
+@@ -194,7 +201,7 @@ public class DataWatcher {
      public List<DataWatcher.b<?>> getNonDefaultValues() {
          List<DataWatcher.b<?>> list = null;
  
@@ -93,7 +97,7 @@ index 92b6a3fa8..e3b8a0541 100644
          ObjectIterator objectiterator = this.itemsById.values().iterator();
  
          while (objectiterator.hasNext()) {
-@@ -205,12 +212,12 @@ public class DataWatcher {
+@@ -209,12 +216,12 @@ public class DataWatcher {
              }
          }
  
@@ -108,7 +112,7 @@ index 92b6a3fa8..e3b8a0541 100644
  
          try {
              Iterator iterator = list.iterator();
-@@ -225,7 +232,7 @@ public class DataWatcher {
+@@ -229,7 +236,7 @@ public class DataWatcher {
                  }
              }
          } finally {
@@ -118,10 +122,10 @@ index 92b6a3fa8..e3b8a0541 100644
  
          this.entity.onSyncedDataUpdated(list);
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index dc52a9b8d..0437bd194 100644
+index e83db7454..47b7eaaa0 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -364,6 +364,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -370,6 +370,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.entityData.define(Entity.DATA_POSE, EntityPose.STANDING);
          this.entityData.define(Entity.DATA_TICKS_FROZEN, 0);
          this.defineSynchedData();
@@ -130,5 +134,5 @@ index dc52a9b8d..0437bd194 100644
          this.eyeHeight = this.getEyeHeight(EntityPose.STANDING, this.dimensions);
      }
 -- 
-2.40.0
+2.40.1
 

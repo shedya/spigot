@@ -1,28 +1,28 @@
-From 91149cb7124e9894f56d0d6d2f53dce4700309a0 Mon Sep 17 00:00:00 2001
+From 496db398eab989dc73d4e836bd61c1bd2743f80c Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 22 Sep 2013 19:10:53 +1000
 Subject: [PATCH] Item Despawn Rate
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/item/EntityItem.java b/src/main/java/net/minecraft/world/entity/item/EntityItem.java
-index 09675bf4d..b021444df 100644
+index 0ee3d963c..50045178c 100644
 --- a/src/main/java/net/minecraft/world/entity/item/EntityItem.java
 +++ b/src/main/java/net/minecraft/world/entity/item/EntityItem.java
 @@ -187,7 +187,7 @@ public class EntityItem extends Entity implements TraceableEntity {
                  }
              }
  
--            if (!this.level.isClientSide && this.age >= 6000) {
-+            if (!this.level.isClientSide && this.age >= level.spigotConfig.itemDespawnRate) { // Spigot
+-            if (!this.level().isClientSide && this.age >= 6000) {
++            if (!this.level().isClientSide && this.age >= this.level().spigotConfig.itemDespawnRate) { // Spigot
                  // CraftBukkit start - fire ItemDespawnEvent
                  if (org.bukkit.craftbukkit.event.CraftEventFactory.callItemDespawnEvent(this).isCancelled()) {
                      this.age = 0;
-@@ -509,7 +509,7 @@ public class EntityItem extends Entity implements TraceableEntity {
+@@ -513,7 +513,7 @@ public class EntityItem extends Entity implements TraceableEntity {
  
      public void makeFakeItem() {
          this.setNeverPickUp();
 -        this.age = 5999;
-+        this.age = level.spigotConfig.itemDespawnRate - 1; // Spigot
++        this.age = this.level().spigotConfig.itemDespawnRate - 1; // Spigot
      }
  
      public float getSpin(float f) {
@@ -43,5 +43,5 @@ index 0c0c29efe..e3682d28c 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 

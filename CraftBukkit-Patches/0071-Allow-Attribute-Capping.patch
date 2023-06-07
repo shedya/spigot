@@ -1,4 +1,4 @@
-From 949d0306cf129952bdde3618389679595350d2eb Mon Sep 17 00:00:00 2001
+From c81988a1b98980e1fe76db4d6170cdf975703e30 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 28 Jul 2014 16:55:51 +1000
 Subject: [PATCH] Allow Attribute Capping.
@@ -57,5 +57,5 @@ index 08f6ef8d4..58fb1b92e 100644
 +    }
  }
 -- 
-2.40.0
+2.40.1
 
