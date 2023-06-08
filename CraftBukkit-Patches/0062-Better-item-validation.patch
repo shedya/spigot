@@ -1,4 +1,4 @@
-From 9612a8226efb541dbd1fb6a4adc5e0af3cd436c5 Mon Sep 17 00:00:00 2001
+From 80517c61a32f2001f886c923a127488c093e94c3 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
@@ -58,10 +58,10 @@ index 967d5ba30..82c1487db 100644
          }
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-index 5ece149e3..198b0baf3 100644
+index 2d10c1c02..853402b3d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-@@ -77,6 +77,10 @@ import org.bukkit.inventory.meta.Repairable;
+@@ -78,6 +78,10 @@ import org.bukkit.inventory.meta.Repairable;
  import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
  import org.bukkit.persistence.PersistentDataContainer;
  
@@ -72,7 +72,7 @@ index 5ece149e3..198b0baf3 100644
  /**
   * Children must include the following:
   *
-@@ -331,18 +335,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
+@@ -332,18 +336,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
              NBTTagCompound display = tag.getCompound(DISPLAY.NBT);
  
              if (display.contains(NAME.NBT)) {
